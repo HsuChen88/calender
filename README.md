@@ -2,7 +2,7 @@
 請注意所有的路徑均為我本機上儲存的位置，若欲使用需先更改為自己的檔案路徑
 
 ## 示意圖
-image.png
+![image](https://user-images.githubusercontent.com/99878799/177176711-076e82d2-201f-4191-92cf-9c8d3c0ef0f3.png)
 
 ### 練習內容
 - 用 Python 操作 excel (openpyxl)
