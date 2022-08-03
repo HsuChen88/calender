@@ -9,13 +9,14 @@ class Event:
         self.time = []  # string
         
     def GetTime(self, count):   # 取得每部影片的"時間長度"
-        wb = load_workbook('C:/Users/User/Desktop/calender/excel/course_arr.xlsx')
+        wb = load_workbook('./excel/course_arr.xlsx')
         ws = wb.active
         if (self.name == "離散"): start_pos = 1
         elif (self.name == "資結"): start_pos = 4
         elif (self.name == "計概"): start_pos = 8
         else: return self.time
         
+        # output = []
         for pos in range(3):
             pos = get_column_letter(start_pos + pos)
             getTime = ws[str(pos) + str(count+1)]
@@ -29,15 +30,17 @@ class Event:
         
         return self.time        
 
-wb = load_workbook('C:/Users/User/Desktop/calender/excel/Calender.xlsx')
-ws = wb.active
-
 today = date.today()
 dateList = re.split("[-]", str(today))      # ['2022', '07', '02']
+month = int(dateList[1])
 day = int(dateList[2])
 
+wb = load_workbook('./excel/Calender.xlsx')
+ws = wb.active
+ws = wb[f'{month}月']
+
 # 取得 Calender 上今天的欄位
-pattern = f'7月{day}日'
+pattern = f'{month}月{day}日'
 for x in range(1, ws.max_column+1):
     char = get_column_letter(x)
     getdate = ws[char + '1'].value
@@ -67,7 +70,7 @@ else:
 
     # 讀 count.txt 取得 "是否今日第一次打開" 及 "各項課程的記數"
     count_list = []
-    with open("C:/Users/User/Desktop/calender/count.txt", mode="r", encoding="utf-8") as file:
+    with open("./count.txt", mode="r", encoding="utf-8") as file:
         data  = file.read()
     sp_list = re.split("\n", data)
     for item in sp_list:
@@ -91,7 +94,7 @@ else:
                 
     # 寫入新的記數到 count.txt
     doc = f'Today = {dateList[2]}\nDS_count = {DS_count}\nDiscrete_count = {Discrete_count}\nCD_count = {CD_count}'
-    with open("C:/Users/User/Desktop/calender/count.txt", mode="w", encoding="utf-8") as file:
+    with open("./count.txt", mode="w", encoding="utf-8") as file:
             file.write(doc)
 
     # 取得各項行程的"時間長度"存放於 time_list
