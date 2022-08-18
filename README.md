@@ -44,3 +44,16 @@
 - 用 Python 操作 excel (openpyxl)
 - 使用 class物件
 - REGEX 正規表達式
+
+## 更新
+- 遇到的問題\
+每次開起執行檔的速度都很慢\
+cmd打開很久才出現內容
+
+- 可能的原因
+  1. 每次開啟前被防毒軟體攔下
+  2. 包含太多不必要的套件一起被打包了 (numpy尤其嚴重)
+
+- 解決辦法
+  1. 將```pyinstaller -F everyday.py```改成```pyinstaller -D everyday.py```
+  2. 建置一個乾淨的環境，只包含所需要的套件，再重新打包
